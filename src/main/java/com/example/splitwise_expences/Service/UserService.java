@@ -1,5 +1,11 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.Service;
 
+import com.example.splitwise_expences.DTO.UserRequest;
+import com.example.splitwise_expences.DTO.UserResponse;
+import com.example.splitwise_expences.DTO.UserEntity;
+import com.example.splitwise_expences.ExceptionHandling.DuplicateUserEmailException;
+import com.example.splitwise_expences.ExceptionHandling.UserNotFoundException;
+import com.example.splitwise_expences.Repository.UserRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +32,7 @@ public class UserService {
 		}
 
 		try {
-			return UserResponse.from(userRepository.saveAndFlush(new User(name, email)));
+			return UserResponse.from(userRepository.saveAndFlush(new UserEntity(name, email)));
 		}
 		catch (DataIntegrityViolationException exception) {
 			throw new DuplicateUserEmailException(email);
@@ -44,7 +50,7 @@ public class UserService {
 	}
 
 	public UserResponse update(UUID id, UserRequest request) {
-		User user = findUser(id);
+		UserEntity user = findUser(id);
 		String name = request.name().trim();
 		String email = normalizeEmail(request.email());
 		if (userRepository.existsByEmailAndIdNot(email, id)) {
@@ -64,7 +70,7 @@ public class UserService {
 		userRepository.delete(findUser(id));
 	}
 
-	private User findUser(UUID id) {
+	private UserEntity findUser(UUID id) {
 		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
 	}
 

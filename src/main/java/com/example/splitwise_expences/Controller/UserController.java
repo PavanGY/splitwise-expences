@@ -1,5 +1,8 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.Controller;
 
+import com.example.splitwise_expences.DTO.UserRequest;
+import com.example.splitwise_expences.DTO.UserResponse;
+import com.example.splitwise_expences.Service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

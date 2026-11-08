@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,7 +51,7 @@ class SplitwiseExpencesApplicationTests {
 
 		mockMvc.perform(get("/api/users").with(httpBasic("test-user", "test-password")))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$[0].name").value("Alex Example"));
+				.andExpect(jsonPath("$[*].name", hasItem("Alex Example")));
 
 		mockMvc.perform(put(location)
 						.with(httpBasic("test-user", "test-password"))

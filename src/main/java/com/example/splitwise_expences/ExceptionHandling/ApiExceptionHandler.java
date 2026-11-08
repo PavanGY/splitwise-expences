@@ -1,4 +1,4 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.ExceptionHandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

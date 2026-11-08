@@ -1,4 +1,4 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

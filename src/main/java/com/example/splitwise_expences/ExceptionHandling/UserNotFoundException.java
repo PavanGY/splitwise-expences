@@ -1,4 +1,4 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.ExceptionHandling;
 
 import java.util.UUID;
 

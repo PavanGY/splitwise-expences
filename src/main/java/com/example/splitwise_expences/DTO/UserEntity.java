@@ -1,4 +1,4 @@
-package com.example.splitwise_expences.user;
+package com.example.splitwise_expences.DTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "uk_users_email", columnNames = "email"))
-public class User {
+public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -33,15 +33,15 @@ public class User {
 	@Column(nullable = false)
 	private Instant updatedAt;
 
-	protected User() {
+	protected UserEntity() {
 	}
 
-	User(String name, String email) {
+	public UserEntity(String name, String email) {
 		this.name = name;
 		this.email = email;
 	}
 
-	void update(String name, String email) {
+	public void update(String name, String email) {
 		this.name = name;
 		this.email = email;
 	}

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "expense_groups")
 
 public class GroupEntity {
     @Id
@@ -14,6 +14,7 @@ public class GroupEntity {
     @Column(nullable = false)
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     // Default constructor required by JPA
